@@ -6,7 +6,7 @@
  * 
  * Return: the number of bytes printed
  */
-int (*get_specifier(chat *s))(va_list ap, params_t *params)
+int (*get_specifier(char *s))(va_list ap, params_t *params)
 {
     specifier_t specifiers[] = {
         {"c", print_char},
@@ -58,7 +58,7 @@ int get_print_func(char *s, va_list ap, params_t *params)
  * 
  * Return: the number of bytes printed
  */
-int get_flags(char *s, params_t *params){
+int get_flag(char *s, params_t *params){
     int i = 0;
 
     switch (*s)
@@ -89,7 +89,7 @@ int get_flags(char *s, params_t *params){
  * 
  * return: if modifier was valid
  */
-int get_modifier(cha *s, params_t *params){
+int get_modifier(char *s, params_t *params){
     int i = 0;
 
     switch (*s)

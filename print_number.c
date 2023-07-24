@@ -62,7 +62,7 @@ int print_number(char *str, params_t *params){
  * return: chars printed
 */
 int print_number_right_shift(char *str, params_t *params){
-    unsigned int i = 0, neg, neg2, i = _strlen(str);
+    unsigned int n = 0, neg, neg2, i = _strlen(str);
     char pad_char = ' ';
 
     if (params->zero_flag && !params->minus_flag)

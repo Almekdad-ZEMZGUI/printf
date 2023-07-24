@@ -48,7 +48,7 @@ typedef struct parameters
 	unsigned int width;
 	unsigned int precision;
 
-	unsigned int h_modifer		: 1;
+	unsigned int h_modifier		: 1;
 	unsigned int l_modifier		: 1;
 } params_t;
 
@@ -82,9 +82,9 @@ int print_address(va_list ap, params_t *params);
 /* specifier.c */
 int (*get_specifier(char *s))(va_list ap, params_t *params);
 int get_print_func(char *s, va_list ap, params_t *params);
-int get_flags(char *s, params_t *params);
+int get_flag(char *s, params_t *params);
 int get_modifier(char *s, params_t *params);
-char *get_width(char *s, params_t *params);
+char *get_width(char *s, params_t *params, va_list ap);
 
 /* convert_number.c */
 int print_hex(va_list ap, params_t *params);
@@ -108,7 +108,7 @@ int print_number_left_shift(char *str, params_t *params);
 void init_params(params_t *params, va_list ap);
 
 /* string fields.c */
-char *get_precision(char *s, params_t *params);
+char *get_precision(char *p, params_t *params, va_list ap);
 
 /* _printf.c */
 int _printf(const char *format, ...);
