@@ -34,14 +34,15 @@ int print_rev(va_list ap, params_t *params)
 	char *str = va_arg(ap, char *);
 	(void)params;
 
-	if (str)
-	{
-		for (len = 0; *str; str++)
-			len++;
-		str--;
-		for (; len > 0; len--, str--)
-			count += _putchar(*str);
-	}
+	if (!str)
+		str = "(null)";
+
+	for (len = 0; *str; str++)
+		len++;
+	str--;
+	for (; len > 0; len--, str--)
+		count += _putchar(*str);
+
 	return (count);
 }
 
