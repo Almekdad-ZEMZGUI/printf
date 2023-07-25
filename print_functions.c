@@ -86,7 +86,7 @@ int print_string(va_list ap, params_t *params)
 }
 
 /**
- * print_percent - prints a percent sign
+ * print_percent - prints a percent sign or reverses a string
  * @ap: the argument pointer
  * @params: the parameters
  *
@@ -94,9 +94,22 @@ int print_string(va_list ap, params_t *params)
  */
 int print_percent(va_list ap, params_t *params)
 {
-	(void)ap;
+	char *str;
+	int count = 0;
+
 	(void)params;
-	return (_putchar('%'));
+	str = va_arg(ap, char *);
+
+	if (str)
+	{
+		int len = _strlen(str);
+		int i;
+
+		for (i = len - 1; i >= 0; i--)
+			count += _putchar(str[i]);
+	} else
+		count += _puts("(null)");
+	return (count);
 }
 
 /**
