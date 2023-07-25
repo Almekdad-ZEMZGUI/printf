@@ -59,8 +59,8 @@ typedef struct parameters
 */
 typedef struct specifier
 {
-    char *specifier;
-    int (*f)(va_list, params_t *);
+	char *specifier;
+	int (*f)(va_list, params_t *);
 } specifier_t;
 
 /* _puts.c */
