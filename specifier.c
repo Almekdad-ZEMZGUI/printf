@@ -24,12 +24,13 @@ int (*get_specifier(char *s))(va_list ap, params_t *params)
         {"%", print_percent},
         {NULL, NULL}
     };
-    int i;
+    int i = 0;
 
-    for (i = 0; specifiers[i].specifier; i++)
+    while (specifiers[i].specifier)
     {
-        if (*(specifiers[i].specifier) == *s)
+        if (*s == specifiers[i].specifier[0])
             return (specifiers[i].f);
+        i++;
     }
     return (NULL);
 }
