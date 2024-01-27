@@ -8,38 +8,39 @@
  */
 int _printf(const char *format, ...)
 {
-        int charPrinted = 0;
-        int i = 0;
+	int charPrinted = 0;
+	int i = 0;
 
-        if (format == NULL)
-                return (-1);
+	if (format == NULL)
+		return (-1);
 
-        va_list arg_list;
+	va_list arg_list;
 
-        va_start(arg_list, format);
-        
+	va_start(arg_list, format);
 
-        while (format[i] != '\0')
-        {
-                if (format[i] == '%')
-                {
-                        if (format[i+1] == 'c')
-                        {
-                                charPrinted += _print_char(arg_list); 
-                        }else if (format[i+1] == 's') {
-                                charPrinted += _print_string(arg_list);     
-                        }else if (format[i+1] == '%')
+	while (format[i] != '\0')
+	{
+		if (format[i] == '%')
+		{
+			if (format[i + 1] == 'c')
 			{
-				charPrinted += _putchar('%');	
+				charPrinted += _print_char(arg_list);
+			} else if (format[i + 1] == 's')
+			{
+				charPrinted += _print_string(arg_list);
+			} else if (format[i + 1] == '%')
+			{
+				charPrinted += _putchar(format[i + 1];
 			}
-                        i += 2;
-                } else{
-                        _putchar(format[i]);
-                        i++;
-                        charPrinted++;
-                }
-        }
+			i += 2;
+		} else
+		{
+		_putchar(format[i]);
+		i++;
+		charPrinted++;
+		}
+	}
 
-        va_end(arg_list);
-        return(charPrinted);
+	va_end(arg_list);
+	return (charPrinted);
 }
