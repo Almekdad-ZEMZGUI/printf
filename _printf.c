@@ -30,7 +30,7 @@ int _printf(const char *format, ...)
 				charPrinted += _print_string(arg_list);
 			} else if (format[i + 1] == '%')
 			{
-				charPrinted += _putchar(format[i + 1]);
+				charPrinted += _putchar('%');
 			}
 			i += 2;
 		} else
