@@ -11,12 +11,12 @@ int _printf(const char *format, ...)
 	int charPrinted = 0;
 	int i = 0;
 
-	if (format == NULL)
-		return (-1);
-
 	va_list arg_list;
 
 	va_start(arg_list, format);
+
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
 
 	while (format[i] != '\0')
 	{
@@ -30,7 +30,7 @@ int _printf(const char *format, ...)
 				charPrinted += _print_string(arg_list);
 			} else if (format[i + 1] == '%')
 			{
-				charPrinted += _putchar(format[i + 1];
+				charPrinted += _putchar(format[i + 1]);
 			}
 			i += 2;
 		} else
