@@ -2,7 +2,9 @@
 
 int main()
 {
-         _printf("%%%");
+         _printf("%         y", 'E');
+         _printf("%         y", 'E');
 
         return 0;
 }
+

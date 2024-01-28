@@ -30,7 +30,7 @@ int _printf(const char *format, ...)
                         }
                         else if (format[i + 1] == ' ')
                         {
-                                i += 2;
+                                i++;
                                 goto here;
                         }
                         else if (format[i + 1] == 'c')
