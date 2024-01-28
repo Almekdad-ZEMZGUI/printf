@@ -51,8 +51,8 @@ int _printf(const char *format, ...)
                         {
                                 if (esp == ' ')
                                 {
-                                       charPrinted += _printf_percent();
-                                       _putchar(esp);
+                                        charPrinted += _printf_percent();
+                                        charPrinted += _putchar(esp);
                                         i++;
                                 }else
                                 {
