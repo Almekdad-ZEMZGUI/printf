@@ -25,6 +25,10 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
+		        if (format[i + 1] == '\0')
+                        {
+                                return (-1);
+                        }
                         if (format[i + 1] == 'c')
                         {
                                 charPrinted += _print_char(arg_list);
@@ -54,4 +58,3 @@ int _printf(const char *format, ...)
 	va_end(arg_list);
 	return (charPrinted);
 }
-
