@@ -8,7 +8,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int charPrinted = 0;
+        int charPrinted = 0;
 	int i = 0;
 
 	va_list arg_list;
@@ -20,27 +20,35 @@ int _printf(const char *format, ...)
 
 	while (format[i] != '\0')
 	{
-		if (format[i] == '%' && format[i + 1] != '\0')
+		if (format[i] == '%')
 		{
-			if (format[i + 1] == 'c')
-			{
-				charPrinted += _print_char(arg_list);
-			} else if (format[i + 1] == 's')
-			{
-				charPrinted += _print_string(arg_list);
-			} else if (format[i + 1] == '%')
-			{
-				charPrinted += _putchar('%');
-			}
-			i += 2;
+                        if (format[i + 1] == 'c')
+                        {
+                                charPrinted += _print_char(arg_list);
+                                i += 2;
+                        } else if (format[i + 1] == 's')
+                        {
+                                charPrinted += _print_string(arg_list);
+                                i += 2;
+                        } else if (format[i + 1] == '%')
+                        {
+                                charPrinted += _printf_percent();
+                                i += 2;
+                        } else
+                        {
+                                charPrinted ++;
+                                i++;
+                        }
+
 		} else
 		{
-		_putchar(format[i]);
-		i++;
-		charPrinted++;
+                        _putchar(format[i]);
+                        i++;
+                        charPrinted++;
 		}
 	}
 
 	va_end(arg_list);
 	return (charPrinted);
 }
+
