@@ -23,9 +23,15 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-		        if (format[i + 1] == '\0' || format[i + 1] == ' ')
+		        here:
+		        if (format[i + 1] == '\0')
                         {
                                 return (-1);
+                        }
+                        else if (format[i + 1] == ' ')
+                        {
+                                i += 2;
+                                goto here;
                         }
                         else if (format[i + 1] == 'c')
                         {
@@ -42,7 +48,7 @@ int _printf(const char *format, ...)
                         } else
                         {
                                 charPrinted += _printf_percent();
-                                i++; 
+                                i++;
                         }
 
 		} else
