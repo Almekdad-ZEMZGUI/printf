@@ -8,68 +8,36 @@
  */
 int _printf(const char *format, ...)
 {
+        matching arr[] = {
+                {"%c", _print_char}, {"%s", _print_string},
+                {"%%", _print_percent}
+        };
         int charPrinted = 0;
-	int i = 0;
-	char esp;
+	int j = 0, i = 0;
 
 	va_list arg_list;
 
-	if (format == NULL) return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
+	if (format == NULL || (format[0] == '%' && !format[1])) return (-1);
 
 	va_start(arg_list, format);
 
-	while (format[i] != '\0')
-	{
-		if (format[i] == '%')
-		{
-		        here:
-		        if (format[i + 1] == '\0')
+	here:
+	while(format[i])
+        {
+                while(j < 3)
+                {
+                        if (arr[j].id[0] == format[i] && arr[j].id[1] == format[i + 1])
                         {
-                                return (-1);
-                        }
-                        else if (format[i + 1] == ' ')
-                        {
-                                esp = ' ';
-                                i++;
+                                charPrinted += arr[j].f(arg_list);
+                                i += 2;
                                 goto here;
                         }
-                        else if (format[i + 1] == 'c')
-                        {
-                                charPrinted += _print_char(arg_list);
-                                i += 2;
-                        } else if (format[i + 1] == 's')
-                        {
-                                charPrinted += _print_string(arg_list);
-                                i += 2;
-                        } else if (format[i + 1] == '%')
-                        {
-                                charPrinted += _printf_percent();
-                                i += 2;
-                        } else
-                        {
-                                if (esp == ' ')
-                                {
-                                        charPrinted += _printf_percent();
-                                        charPrinted += _putchar(esp);
-                                        i++;
-                                }else
-                                {
-                                        charPrinted += _printf_percent();
-                                        i++;
-                                }
-                        }
+                        j++;
 
-		} else
-		{
-                        _putchar(format[i]);
-                        i++;
-                        charPrinted++;
-		}
-	}
-
+                }
+                charPrinted += _putchar(format[i]);
+                i++;
+        }
 	va_end(arg_list);
 	return (charPrinted);
 }
-
