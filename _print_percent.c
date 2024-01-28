@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * _printf_percent - prints the %
+ * _print_percent - prints the %
  * Return: 1.
  */
-int _printf_percent(void)
+int _print_percent(void)
 {
 	_putchar(37);
 	return (1);
