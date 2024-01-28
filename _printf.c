@@ -10,6 +10,7 @@ int _printf(const char *format, ...)
 {
         int charPrinted = 0;
 	int i = 0;
+	char esp;
 
 	va_list arg_list;
 
@@ -30,6 +31,7 @@ int _printf(const char *format, ...)
                         }
                         else if (format[i + 1] == ' ')
                         {
+                                esp = ' ';
                                 i++;
                                 goto here;
                         }
@@ -47,9 +49,16 @@ int _printf(const char *format, ...)
                                 i += 2;
                         } else
                         {
-                                charPrinted += _printf_percent();
-                                _putchar(' ');
-                                i++;
+                                if (esp == ' ')
+                                {
+                                       charPrinted += _printf_percent();
+                                       _putchar(esp);
+                                        i++;
+                                }else
+                                {
+                                        charPrinted += _printf_percent();
+                                        i++;
+                                }
                         }
 
 		} else
