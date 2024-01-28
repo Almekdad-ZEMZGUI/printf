@@ -48,6 +48,7 @@ int _printf(const char *format, ...)
                         } else
                         {
                                 charPrinted += _printf_percent();
+                                _putchar(' ');
                                 i++;
                         }
 
