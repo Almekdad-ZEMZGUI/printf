@@ -10,6 +10,7 @@ int _putchar(char c);
 int _print_char(va_list args);
 int _strlen(char *s);
 int _print_string(va_list args);
-
+int _print_sgndec(va_list args);
+int _print_int(va_list args);
 
 #endif /* MAIN_H */
