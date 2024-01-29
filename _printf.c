@@ -18,7 +18,7 @@ int _printf(const char *format, ...)
 		return (-1);
 	va_start(arg_list, format);
 Here:
-	while (format[i])
+	while (format && format[i] != '\0')
 	{
 		j = 0;
 		while (j < 3)
