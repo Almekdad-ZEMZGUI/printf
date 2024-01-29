@@ -17,7 +17,6 @@ int _printf(const char *format, ...)
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 	va_start(arg_list, format);
-here:
 	while (format[i])
 	{
 		j = 0;
@@ -27,10 +26,13 @@ here:
 			{
 				charPrinted += arr[j].f(arg_list);
 				i += 2;
-				goto here;
+				j = -1;
+				break;
 			}
 			j++;
 		}
+		if (j == -1)
+			continue;
 		charPrinted += _putchar(format[i]);
 		i++;
 	}
