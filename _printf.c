@@ -8,36 +8,51 @@
  */
 int _printf(const char *format, ...)
 {
-        matching arr[] = {
-                {"%c", _print_char}, {"%s", _print_string},
-                {"%%", _print_percent}
-        };
         int charPrinted = 0;
-	int j = 0, i = 0;
+	int i = 0;
 
 	va_list arg_list;
 
-	if (format == NULL || (format[0] == '%' && !format[1])) return (-1);
+	if (format == NULL) return (-1);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
 
 	va_start(arg_list, format);
 
-	here:
-	while(format[i])
-        {
-                while(j < 3)
-                {
-                        if (arr[j].id[0] == format[i] && arr[j].id[1] == format[i + 1])
+	while (format[i] != '\0')
+	{
+		if (format[i] == '%')
+		{
+		        if (format[i + 1] == '\0' || format[i + 1] == ' ')
                         {
-                                charPrinted += arr[j].f(arg_list);
-                                i += 2;
-                                goto here;
+                                return (-1);
                         }
-                        j++;
+                        else if (format[i + 1] == 'c')
+                        {
+                                charPrinted += _print_char(arg_list);
+                                i += 2;
+                        } else if (format[i + 1] == 's')
+                        {
+                                charPrinted += _print_string(arg_list);
+                                i += 2;
+                        } else if (format[i + 1] == '%')
+                        {
+                                charPrinted += _print_percent();
+                                i += 2;
+                        } else
+                        {
+                                charPrinted += _print_percent();
+                                i++; 
+                        }
 
-                }
-                charPrinted += _putchar(format[i]);
-                i++;
-        }
+		} else
+		{
+                        _putchar(format[i]);
+                        i++;
+                        charPrinted++;
+		}
+	}
+
 	va_end(arg_list);
 	return (charPrinted);
 }
