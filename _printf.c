@@ -27,7 +27,8 @@ Here:
                 j = 0;
                 while(j < 3)
                 {
-                        
+                        if (format[i] == '%' && (format[i + 1] == ' ' || format[i + 1] == '\0'))
+                            return (-1);
                         if (arr[j].id[0] == format[i] && arr[j].id[1] == format[i + 1])
                         {
                                 charPrinted += arr[j].f(arg_list);
