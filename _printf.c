@@ -33,6 +33,8 @@ Here:
                         {
                                 while (format[i + 1] == ' ')
                                         i++;
+                                if (format[i + 1] == '\0')
+                                        return(-1);
                                 spc = 1;
                                 continue;
                         }
