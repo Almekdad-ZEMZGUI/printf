@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
                 {"%%", _print_percent}
         };
         int charPrinted = 0;
-	int j, i = 0;
+	int j, i = 0, spc = 0;
 
 	va_list arg_list;
 
@@ -27,18 +27,30 @@ Here:
                 j = 0;
                 while(j < 3)
                 {
-                        if (format[i] == '%' && format[i + 1] == '\0')
-                            return (-1);
-                        if (arr[j].id[0] == format[i] && arr[j].id[1] == format[i + 1])
+                        if (format[i] == '%' && (format[i + 1] == '\0'))
+                                return (-1);
+                        if (format[i] == '%' && format[i + 1] == ' ')
                         {
-                                charPrinted += arr[j].f(arg_list);
-                                i += 2;
-                                goto Here;
+                                while (format[i + 1] == ' ')
+                                        i++;
+                                spc = 1;
+                                continue;
+                        }
+
+                        if ((arr[j].id[0] == format[i] && arr[j].id[1] == format[i + 1]) ||
+                            (arr[j].id[1] == format[i + 1] && spc))
+                        {
+                                        charPrinted += arr[j].f(arg_list);
+                                        i += 2;
+                                        goto Here;
                         }
                         j++;
 
                 }
+                if (spc)
+                        putchar('%');
                 charPrinted += _putchar(format[i]);
+                spc = 0;
                 i++;
         }
 	va_end(arg_list);
