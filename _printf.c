@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
                 {"%%", _print_percent}
         };
         int charPrinted = 0;
-	int j = 0, i = 0;
+	int j, i = 0;
 
 	va_list arg_list;
 
@@ -21,18 +21,21 @@ int _printf(const char *format, ...)
 
 	va_start(arg_list, format);
 
-	here:
+Here:
 	while(format[i])
         {
-		j = 0;
+                j = 0;
                 while(j < 3)
                 {
                         if (arr[j].id[0] == format[i] && arr[j].id[1] == format[i + 1])
                         {
                                 charPrinted += arr[j].f(arg_list);
                                 i += 2;
-                                goto here;
+                                goto Here;
                         }
+                        if (arr[i].id[0] == format[i] && (format[i + 1] == '\0' || format[i + 1] == ' '))
+                                return (charPrinted);
+
                         j++;
 
                 }
@@ -42,3 +45,4 @@ int _printf(const char *format, ...)
 	va_end(arg_list);
 	return (charPrinted);
 }
+
