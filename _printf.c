@@ -33,7 +33,7 @@ Here:
                                 i += 2;
                                 goto Here;
                         }
-                        if (arr[i].id[0] == format[i] && (format[i + 1] == '\0' || format[i + 1] == ' '))
+                        if (arr[i].id[0] == format[i] && format[i + 1] == '\0')
                                 return (charPrinted);
 
                         j++;
