@@ -24,6 +24,7 @@ int _printf(const char *format, ...)
 	here:
 	while(format[i])
         {
+		j = 0;
                 while(j < 3)
                 {
                         if (arr[j].id[0] == format[i] && arr[j].id[1] == format[i + 1])

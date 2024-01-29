@@ -16,11 +16,9 @@ int _putchar(char c);
 int _print_char(va_list args);
 int _strlen(char *s);
 int _print_string(va_list args);
-<<<<<<< HEAD
 int _print_sgndec(va_list args);
 int _print_int(va_list args);
-=======
 int _print_percent(void);
->>>>>>> 56dfa5c88d70de62fe7270802b145caecda9ac39
+
 
 #endif /* MAIN_H */
