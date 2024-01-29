@@ -14,12 +14,14 @@ int _printf(const char *format, ...)
 	int j, i = 0;
 	va_list arg_list;
 
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+	if (format == NULL)
 		return (-1);
 	va_start(arg_list, format);
 	while (format[i])
 	{
 		j = 0;
+		if (format[i] == '%' && format[i + 1] == '\0')
+                        return (-1);
 		while (j < 3)
 		{
 			if (format[i] == '%' && arr[j].id == format[i + 1])
@@ -31,8 +33,8 @@ int _printf(const char *format, ...)
 			}
 			j++;
 		}
-		if (j == -1)
-			continue;
+		if (j == -1) 
+                        continue;
 		charPrinted += _putchar(format[i]);
 		i++;
 	}
