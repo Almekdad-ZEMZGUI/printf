@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 
 	va_list arg_list;
 
-	if (format == NULL || (format[0] == '%' && !format[1])) return (-1);
+	if (format == NULL) return (-1);
 
 	va_start(arg_list, format);
 
@@ -27,15 +27,13 @@ Here:
                 j = 0;
                 while(j < 3)
                 {
+                        
                         if (arr[j].id[0] == format[i] && arr[j].id[1] == format[i + 1])
                         {
                                 charPrinted += arr[j].f(arg_list);
                                 i += 2;
                                 goto Here;
                         }
-                        if (arr[i].id[0] == format[i] && format[i + 1] == '\0')
-                                return (charPrinted);
-
                         j++;
 
                 }
