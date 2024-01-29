@@ -14,10 +14,8 @@ int _printf(const char *format, ...)
 	int j, i = 0;
 	va_list arg_list;
 
-	if (format == NULL)
+	if (!format)
 		return (-1);
-	if (!format[i])
-		return (0);
 	va_start(arg_list, format);
 Here:
 	while (format[i])
