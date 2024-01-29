@@ -8,40 +8,40 @@
  */
 int _printf(const char *format, ...)
 {
-        matching arr[] = {
-                {'c', _print_char}, {'s', _print_string},
-                {'%', _print_percent}
-        };
-        int charPrinted = 0;
-	int j, i = 0;
+    matching arr[] = {
+        {'c', _print_char}, {'s', _print_string},
+        {'%', _print_percent}
+    };
+    int charPrinted = 0;
+    int j, i = 0;
 
+    va_list arg_list;
+    if (format == NULL)
+        return (-1);
+    va_start(arg_list, format);
 
-	va_list arg_list;
-        if (format == NULL)
-                return (-1);
-	va_start(arg_list, format);
-
-Here:
-	while(format[i])
+    while (format[i])
+    {
+        j = 0;
+        while (j < 3)
         {
-                j = 0;
-                while(j < 3)
-                {
-                        if (format[i] == '%' && !format[i + 1]) return (-1);
-                        if (format[i] == '%' && format[i + 1] == ' ' && !format[i + 2]) return (-1);
+            if (format[i] == '%' && !format[i + 1])
+                return (-1);
+            if (format[i] == '%' && format[i + 1] == ' ' && !format[i + 2])
+                return (-1);
 
-                        if (format[i] == '%' && arr[j].id == format[i + 1])
-                        {
-                                        charPrinted += arr[j].f(arg_list);
-                                        i += 2;
-                                        goto Here;
-                        }
-                        j++;
-                }
-                charPrinted += _putchar(format[i]);
-                i++;
+            if (format[i] == '%' && arr[j].id == format[i + 1])
+            {
+                charPrinted += arr[j].f(arg_list);
+                i += 2;
+                goto Here;
+            }
+            j++;
         }
-	va_end(arg_list);
-	return (charPrinted);
+        charPrinted += _putchar(format[i]);
+        i++;
+    }
+Here:
+    va_end(arg_list);
+    return (charPrinted);
 }
-
