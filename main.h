@@ -7,7 +7,7 @@
 
 typedef struct matching
 {
-	char id;
+	char *id;
 	int (*f)();
 } matching;
 

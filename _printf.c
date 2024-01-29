@@ -9,61 +9,35 @@
 int _printf(const char *format, ...)
 {
         matching arr[] = {
-                {'c', _print_char}, {'s', _print_string},
-                {'%', _print_percent}
+                {"%c", _print_char}, {"%s", _print_string},
+                {"%%", _print_percent}
         };
         int charPrinted = 0;
-	int j, i = 0;
-	int spc;
+	int j = 0, i = 0;
 
 	va_list arg_list;
-        if (format == NULL)
-                return (-1);
+
+	if (format == NULL || (format[0] == '%' && !format[1])) return (-1);
+
 	va_start(arg_list, format);
 
+	here:
 	while(format[i])
         {
-                if (format[i] == '%'){
-                        if (!format[i + 1]) return (-1);
-                        if (format[i + 1] == ' ')
-                        {
-                                while(format [i + 1] == ' ')
-                                        i++;
-                                spc = 1;
-                                if (format[i + 1] == '\0') return (-1);
-                        }
-                        j = 0;
-                        while (j < 3)
-                        {
-                                if (format[i + 1] == arr[j].id)
-                                {
-                                        charPrinted += arr[j].f(arg_list);
-                                        i += 2;
-                                        break;
-                                } else
-                                {
-                                        if (spc)
-                                        {
-                                                charPrinted += _putchar('%');
-                                                charPrinted += _putchar(' ');
-
-                                        }
-                                        charPrinted += _putchar(format[i + 1]);
-                                        i += 2;
-                                        break;
-                                }
-                                j++;
-                        }
-
-                }else
+                while(j < 3)
                 {
-                        charPrinted += _putchar(format[i]);
-                        i++;
+                        if (arr[j].id[0] == format[i] && arr[j].id[1] == format[i + 1])
+                        {
+                                charPrinted += arr[j].f(arg_list);
+                                i += 2;
+                                goto here;
+                        }
+                        j++;
+
                 }
-
+                charPrinted += _putchar(format[i]);
+                i++;
         }
-
 	va_end(arg_list);
 	return (charPrinted);
 }
-
