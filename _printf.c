@@ -25,7 +25,7 @@ Here:
 		{
 			if (format[i] == '%' && !format[i + 1])
 				return (-1);
-			if (format[i] == '%' && format[i + 1] == ' ' && !format[i + 2])
+			if (format[i] == '%' && format[i + 1] == ' ')
 				return (-1);
 			if (format[i] == '%' && arr[j].id == format[i + 1])
 			{
