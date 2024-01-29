@@ -4,6 +4,17 @@
 #include <stddef.h>
 #include <unistd.h>
 #include <stdio.h>
+/**
+ * struct matching - matching specifiers with functions
+ * @id: type char of specifier
+ * @f: the function
+ *
+ */
+typedef struct matching
+{
+	char id;
+	int (*f)();
+} matching;
 
 int _printf(const char *format, ...);
 int _putchar(char c);
