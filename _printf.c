@@ -8,39 +8,36 @@
  */
 int _printf(const char *format, ...)
 {
-	int charPrinted = 0;
-	int i = 0;
+        matching arr[] = {
+                {"%c", _print_char}, {"%s", _print_string},
+                {"%%", _print_percent}
+        };
+        int charPrinted = 0;
+	int j = 0, i = 0;
 
 	va_list arg_list;
 
+	if (format == NULL || (format[0] == '%' && !format[1])) return (-1);
+
 	va_start(arg_list, format);
 
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
-		return (-1);
+	here:
+	while(format[i])
+        {
+                while(j < 3)
+                {
+                        if (arr[j].id[0] == format[i] && arr[j].id[1] == format[i + 1])
+                        {
+                                charPrinted += arr[j].f(arg_list);
+                                i += 2;
+                                goto here;
+                        }
+                        j++;
 
-	while (format[i] != '\0')
-	{
-		if (format[i] == '%' && format[i + 1] != '\0')
-		{
-			if (format[i + 1] == 'c')
-			{
-				charPrinted += _print_char(arg_list);
-			} else if (format[i + 1] == 's')
-			{
-				charPrinted += _print_string(arg_list);
-			} else if (format[i + 1] == '%')
-			{
-				charPrinted += _putchar('%');
-			}
-			i += 2;
-		} else
-		{
-		_putchar(format[i]);
-		i++;
-		charPrinted++;
-		}
-	}
-
+                }
+                charPrinted += _putchar(format[i]);
+                i++;
+        }
 	va_end(arg_list);
 	return (charPrinted);
 }
