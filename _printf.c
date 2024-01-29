@@ -23,10 +23,6 @@ Here:
 		j = 0;
 		while (j < 3)
 		{
-			if (format[i] == '%' && !format[i + 1])
-				return (-1);
-			if (format[i] == '%' && format[i + 1] == ' ')
-				return (-1);
 			if (format[i] == '%' && arr[j].id == format[i + 1])
 			{
 				charPrinted += arr[j].f(arg_list);
