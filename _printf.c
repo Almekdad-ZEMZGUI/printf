@@ -31,7 +31,7 @@ int _printf(const char *format, ...)
 			}
 			j++;
 		}
-		if (j == -1) break;
+		if (j == -1) continue;
 		charPrinted += _putchar(format[i]);
 		i++;
 	}
