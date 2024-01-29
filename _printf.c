@@ -22,6 +22,8 @@ int _printf(const char *format, ...)
 		j = 0;
 		if (format[i] == '%' && format[i + 1] == '\0')
                         return (-1);
+                if (format[i] == '%' && format[i + 1] == ' ' && !format[i + 2])
+                        return (-1);
 		while (j < 3)
 		{
 			if (format[i] == '%' && arr[j].id == format[i + 1])
