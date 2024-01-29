@@ -16,11 +16,8 @@ int _printf(const char *format, ...)
 	int j, i = 0;
 
 	va_list arg_list;
-
         if (format == NULL)
                 return (-1);
-
-
 	va_start(arg_list, format);
 
 Here:
@@ -29,11 +26,8 @@ Here:
                 j = 0;
                 while(j < 3)
                 {
-                        if (format[i] == '%' && !format[i + 1])
-                                return (-1);
-                        if (format[i] == '%' && format[i + 1] == ' ' && !format[i + 2])
-                                return (-1);
-
+                        if (format[i] == '%' && !format[i + 1]) return (-1);
+                        if (format[i] == '%' && format[i + 1] == ' ' && !format[i + 2]) return (-1);
                         if (arr[j].id[0] == format[i] && arr[j].id[1] == format[i + 1])
                         {
                                         charPrinted += arr[j].f(arg_list);
@@ -41,7 +35,6 @@ Here:
                                         goto Here;
                         }
                         j++;
-
                 }
                 charPrinted += _putchar(format[i]);
                 i++;
