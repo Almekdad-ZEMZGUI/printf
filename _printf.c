@@ -9,7 +9,7 @@ int _printf(const char *format, ...)
 	matching arr[] = {
 		{'c', _print_char}, {'s', _print_string},
 		{'%', _print_percent}, {'d', _print_d}, {'i', _print_i}, {'b', _print_b}, {'u', _print_u}, {'o', _print_o},
-		{'x', _print_hex}, {'X', _print_HEX}
+		{'x', _print_hex}, {'X', _print_HEX}, {'S', _print_S}
 	};
 	int charPrinted = 0;
 	int j, i = 0;
@@ -21,7 +21,7 @@ int _printf(const char *format, ...)
 	while (format[i])
 	{
 		j = 0;
-		while (j < 10)
+		while (j < 11)
 		{
 			if (format[i] == '%' && arr[j].id == format[i + 1])
 			{
