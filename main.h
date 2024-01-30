@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 /**
  * struct matching - matching specifiers with functions
  * @id: type char of specifier
@@ -25,5 +26,9 @@ int _print_percent(void);
 int _print_d(va_list args);
 int _print_i(va_list args);
 int _print_b(va_list args);
+int _print_u(va_list args);
+int _print_o(va_list args);
+int _print_HEX(va_list args);
+int _print_hex(va_list args);
 
 #endif /* MAIN_H */
