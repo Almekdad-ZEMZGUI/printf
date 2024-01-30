@@ -32,5 +32,7 @@ int _print_HEX(va_list args);
 int _print_hex(va_list args);
 int _print_HEXX(unsigned int num);
 int _print_S(va_list args);
+int _print_p(va_list args);
+int _print_hexx(unsigned long int num);
 
 #endif /* MAIN_H */
