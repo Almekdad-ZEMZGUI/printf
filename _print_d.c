@@ -33,3 +33,13 @@ int _print_d(va_list args)
 	}
 	return (count);
 }
+
+/**
+ * _print_i - prints integer
+ * @args: argument to print
+ * Return: number of characters printed
+ */
+int _print_i(va_list args)
+{
+	return _print_d(args);
+}
