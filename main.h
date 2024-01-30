@@ -24,5 +24,6 @@ int _print_string(va_list args);
 int _print_percent(void);
 int _print_d(va_list args);
 int _print_i(va_list args);
+int _print_b(va_list args);
 
 #endif /* MAIN_H */
