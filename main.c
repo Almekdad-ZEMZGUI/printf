@@ -21,5 +21,10 @@ int main(void)
         _printf("Unknown:[%r]\n");
         printf("Unknown:[%r]\n");
         printf("Len:[%d %d]\n", len, len2);
+
+	_printf("Length:[%d, %d]\n", len, len);
+    printf("Length:[%d, %d]\n", len2, len2);
+    _printf("Negative:[%d]\n", -762534);
+    printf("Negative:[%d]\n", -762534);
     return (0);
 }
