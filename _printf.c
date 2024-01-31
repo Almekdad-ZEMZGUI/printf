@@ -21,7 +21,7 @@ int _printf(const char *format, ...)
 	while (format[i])
 	{
 		j = 0;
-		while (j < 13)
+		while (j < 14)
 		{
 			if (format[i] == '%' && arr[j].id == format[i + 1])
 			{
