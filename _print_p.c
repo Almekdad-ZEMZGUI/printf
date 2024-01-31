@@ -48,6 +48,8 @@ int _print_hexx(unsigned long int num)
 	}
 	count++;
 	arr = malloc(count * sizeof(long int));
+	if (arr == NULL)
+                return (0);
 
 	for (i = 0; i < count; i++)
 	{
