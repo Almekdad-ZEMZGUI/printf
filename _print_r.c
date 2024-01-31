@@ -14,7 +14,7 @@ int _print_r(va_list args)
 
 	if (s == NULL)
 		s = "(null)";
-	while (s[j] != '\0')
+	while (s[count] != '\0')
 		count++;
 	for (i = count - 1; i >= 0; i--)
 		_putchar(s[i]);
