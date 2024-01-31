@@ -1,43 +1,38 @@
 
 #include "main.h"
 /**
- * _print_rot13 - print str to ROT13
+ * _print_R - print str to ROT13
  * @args: argument
  * Return: number of characters printed
  *
  */
 int _print_rot13(va_list args)
 {
-	char *str = va_arg(args, char *);
-	char *rot = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-	char *alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	int i, count = 0;
-	char *s = NULL;
+	int i, j, count = 0;
+	int k = 0;
+	char *s = va_arg(args, char*);
+	char arr[] = {"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"};
+	char rot[] = {"nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM"};
 
-	s = malloc(sizeof(char) * (_strlen(str) + 1));
-
-	if (!s || !str)
-		return (-1);
-
-	for (count = 0; str[count]; count++)
+	if (s == NULL)
+		s = "(null)";
+	for (i = 0; s[i]; i++)
 	{
-		for (i = 0; i < 52; i++)
+		k = 0;
+		for (j = 0; arr[j] && !k; j++)
 		{
-			if (str[count] == alpha[i])
+			if (s[i] == arr[j])
 			{
-				s[count] = rot[i];
-				break;
+				_putchar(rot[j]);
+				count++;
+				k = 1;
 			}
 		}
-
-		if (str[count] != alpha[i])
-			s[count] = str[count];
+		if (!k)
+		{
+			_putchar(s[i]);
+			count++;
+		}
 	}
-
-	for (count = 0; s[count]; count++)
-		_putchar(s[count]);
-
-	free(s);
-
 	return (count);
 }
