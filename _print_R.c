@@ -8,26 +8,36 @@
  */
 int _print_rot13(va_list args)
 {
-    char *s = va_arg(args, char*);
-    int i, count = 0;
+	char *str = va_arg(args, char *);
+	char *rot = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+	char *alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	int i, count = 0;
+	char *s = NULL;
 
-    if (s == NULL)
-        s = "(null)";
+	s = malloc(sizeof(char) * (_strlen(str) + 1));
 
-    for (i = 0; s[i] != '\0'; i++)
-    {
-        if ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z'))
-        {
-            char base = (s[i] >= 'a' && s[i] <= 'z') ? 'a' : 'A';
-            _putchar((s[i] - base + 13) % 26 + base);
-            count++;
-        }
-        else
-        {
-            _putchar(s[i]);
-            count++;
-        }
-    }
+	if (!s || !str)
+		return (-1);
 
-    return (count);
+	for (count = 0; str[count]; count++)
+	{
+		for (i = 0; i < 52; i++)
+		{
+			if (str[count] == alpha[i])
+			{
+				s[count] = rot[i];
+				break;
+			}
+		}
+
+		if (str[count] != alpha[i])
+			s[count] = str[count];
+	}
+
+	for (count = 0; s[count]; count++)
+		_putchar(s[count]);
+
+	free(s);
+
+	return (count);
 }
