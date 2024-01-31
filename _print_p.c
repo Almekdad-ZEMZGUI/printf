@@ -2,8 +2,8 @@
 
 /**
  * _print_p - prints memory address of a pointer in hexadecimal
- * @val: argument
- * Return: counter
+ * @args: argument
+ * Return: number of character printed
  */
 int _print_p(va_list args)
 {
@@ -49,7 +49,7 @@ int _print_hexx(unsigned long int num)
 	count++;
 	arr = malloc(count * sizeof(long int));
 	if (arr == NULL)
-                return (0);
+		return (0);
 
 	for (i = 0; i < count; i++)
 	{

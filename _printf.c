@@ -8,8 +8,10 @@ int _printf(const char *format, ...)
 {
 	matching arr[] = {
 		{'c', _print_char}, {'s', _print_string},
-		{'%', _print_percent}, {'d', _print_d}, {'i', _print_i}, {'b', _print_b}, {'u', _print_u}, {'o', _print_o},
-		{'x', _print_hex}, {'X', _print_HEX}, {'S', _print_S}, {'p', _print_p}, {'r', _print_r}, {'R', _print_rot13}
+		{'%', _print_percent}, {'d', _print_d}, {'i', _print_i},
+		{'b', _print_b}, {'u', _print_u}, {'o', _print_o},
+		{'x', _print_hex}, {'X', _print_HEX}, {'S', _print_S},
+		{'p', _print_p}, {'r', _print_r}, {'R', _print_rot13}
 	};
 	int charPrinted = 0;
 	int j, i = 0;
